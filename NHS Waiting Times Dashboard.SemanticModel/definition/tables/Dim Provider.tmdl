@@ -1,0 +1,41 @@
+table 'Dim Provider'
+	lineageTag: 830876c7-4bd2-4212-8d04-b797c8b3b8aa
+
+	column 'Provider Code'
+		dataType: string
+		isKey
+		lineageTag: bb4c9ff1-28b3-4390-acb1-f2a3270191ee
+		summarizeBy: none
+		sourceColumn: Provider Code
+
+	column 'Provider Name'
+		dataType: string
+		lineageTag: 8586daef-3f45-49aa-9e3c-1cfab3c60f06
+		summarizeBy: none
+		sourceColumn: Provider Name
+
+	column 'Provider Parent Code'
+		dataType: string
+		lineageTag: 138cf4d2-4881-4c92-8069-d7f3910d6940
+		summarizeBy: none
+		sourceColumn: Provider Parent Code
+
+	column 'Provider Parent Name'
+		dataType: string
+		lineageTag: 5f063ad2-ad9f-4564-b557-556c6f60e286
+		summarizeBy: none
+		sourceColumn: Provider Parent Name
+
+	partition 'Dim Provider' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\dim_provider.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Provider Code", type text}, {"Provider Name", type text}, {"Provider Parent Code", type text}, {"Provider Parent Name", type text}}, "en-GB"),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"Provider Code"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

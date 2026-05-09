@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "NHS Waiting Times Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8cf880f8-0c90-47b8-9777-3c2dfa789ce9"
+  }
+}

@@ -1,0 +1,28 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Dim Date","Dim Provider","Dim Region","Dim Specialty","Fact National RTT Monthly","Fact Provider RTT Monthly","Fact Provider Specialty RTT Monthly","Fact Region RTT Monthly","Fact Region Specialty RTT Monthly"]
+
+ref table 'Dim Date'
+ref table 'Dim Provider'
+ref table 'Dim Region'
+ref table 'Dim Specialty'
+ref table 'Fact National RTT Monthly'
+ref table 'Fact Provider RTT Monthly'
+ref table 'Fact Provider Specialty RTT Monthly'
+ref table 'Fact Region RTT Monthly'
+ref table 'Fact Region Specialty RTT Monthly'
+ref table DateTableTemplate_290acc8b-5659-4193-ae39-668a8c7bdffe
+ref table LocalDateTable_8ed5fcea-18a2-4e0f-98c7-085e0c0f9560
+
+ref cultureInfo en-GB
+

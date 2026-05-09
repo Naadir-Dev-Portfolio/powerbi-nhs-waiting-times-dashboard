@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "d6c04cb1aadd05ecace3",
+  "position": {
+    "x": 76,
+    "y": 684.66666666666663,
+    "z": 9000,
+    "height": 35.333333333333336,
+    "width": 929.33333333333337,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "This report was created by ",
+                    "textStyle": {
+                      "fontSize": "9pt"
+                    }
+                  },
+                  {
+                    "value": "Naadir ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt"
+                    }
+                  },
+                  {
+                    "value": "for developmental purposes. ",
+                    "textStyle": {
+                      "fontSize": "9pt"
+                    }
+                  },
+                  {
+                    "value": "Public NHS England Open Data",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  },
+                  {
+                    "value": ".                                          ",
+                    "textStyle": {
+                      "fontSize": "9pt"
+                    }
+                  },
+                  {
+                    "value": "Report was last refreshed in April 2026      ",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  },
+                  {
+                    "value": "                       ",
+                    "textStyle": {
+                      "fontSize": "9pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 752.44663273345714,
+            "y": 220.33893145013167
+          },
+          "nodeIndex": "Dim Date",
+          "nodeLineageTag": "01821da9-605c-4143-bac7-6609b7208876",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 412.59318954387379
+          },
+          "nodeIndex": "Dim Provider",
+          "nodeLineageTag": "830876c7-4bd2-4212-8d04-b797c8b3b8aa",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1417.4938754476427,
+            "y": 70.9912736900535
+          },
+          "nodeIndex": "Dim Region",
+          "nodeLineageTag": "eeef065e-8088-48f4-adb2-37ef4771a0d3",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 959.729759762686,
+            "y": 700.954156922663
+          },
+          "nodeIndex": "Dim Specialty",
+          "nodeLineageTag": "a102407d-3b93-424a-be12-96511a297e81",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 715.87303180276058,
+            "y": 834.67360729794837
+          },
+          "nodeIndex": "Fact National RTT Monthly",
+          "nodeLineageTag": "b1955851-9cb4-495b-a775-cb96075f617d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 339.85593885904507,
+            "y": 65.821528950577431
+          },
+          "nodeIndex": "Fact Provider RTT Monthly",
+          "nodeLineageTag": "26fb4717-508b-43d6-aa99-70f1c7b0ed50",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 462.57417711341077,
+            "y": 423.10348893199432
+          },
+          "nodeIndex": "Fact Provider Specialty RTT Monthly",
+          "nodeLineageTag": "f04065df-efee-453b-b389-e3dd0f1528bd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1042.3689299379866,
+            "y": -50
+          },
+          "nodeIndex": "Fact Region RTT Monthly",
+          "nodeLineageTag": "db21090c-2263-4009-b6ab-4aaeec805109",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1223.6077660417836,
+            "y": 334.9561865375299
+          },
+          "nodeIndex": "Fact Region Specialty RTT Monthly",
+          "nodeLineageTag": "1c1d21e1-e08c-4b1e-8ebc-a394ddc55817",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "NHS Waiting Times Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "40246806-f2f7-4e3f-8f4a-14fa6d5ef878"
+  }
+}

@@ -1,0 +1,40 @@
+table 'Dim Region'
+	lineageTag: eeef065e-8088-48f4-adb2-37ef4771a0d3
+
+	column 'Region Key'
+		dataType: string
+		isKey
+		lineageTag: 912eea38-c95d-48ae-95e5-f2183e00c44a
+		summarizeBy: none
+		sourceColumn: Region Key
+
+	column 'Geography Type'
+		dataType: string
+		lineageTag: 7f89fe60-81b6-47e7-be51-46ed56b2285f
+		summarizeBy: none
+		sourceColumn: Geography Type
+
+	column 'Geography Code'
+		dataType: string
+		lineageTag: 701372f3-895c-4685-8fe6-a01832a69018
+		summarizeBy: none
+		sourceColumn: Geography Code
+
+	column 'Geography Name'
+		dataType: string
+		lineageTag: a9ba139c-f7fb-4df3-8911-78d72cbbba37
+		summarizeBy: none
+		sourceColumn: Geography Name
+
+	partition 'Dim Region' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\dim_region.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Region Key", type text}, {"Geography Type", type text}, {"Geography Code", type text}, {"Geography Name", type text}}, "en-GB")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

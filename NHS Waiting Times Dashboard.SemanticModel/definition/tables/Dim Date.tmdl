@@ -1,0 +1,84 @@
+table 'Dim Date'
+	lineageTag: 01821da9-605c-4143-bac7-6609b7208876
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: b417db2b-8aa8-40b8-8089-fbff8bf774a6
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 3f427f36-e847-4d50-8ebb-5c94dc09c28e
+			defaultHierarchy: LocalDateTable_8ed5fcea-18a2-4e0f-98c7-085e0c0f9560.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		lineageTag: 08b7844b-f332-4456-89bf-1996be2f4f61
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		lineageTag: 5fdd77f1-3cab-4594-969f-d04c4997fa7f
+		summarizeBy: sum
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 09e15350-8098-4478-b11e-188cce842a8d
+		summarizeBy: none
+		sourceColumn: Month Name
+
+	column 'Month Short'
+		dataType: string
+		lineageTag: 0b4a2a66-6478-4c37-ab0b-1dcfceb0847b
+		summarizeBy: none
+		sourceColumn: Month Short
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 0b11ee38-14dc-4668-a6cc-50e4ec07c3b4
+		summarizeBy: none
+		sourceColumn: Year Month
+
+	column Quarter
+		dataType: string
+		lineageTag: 79fd737e-d449-4e00-894c-7c02d4829cae
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column 'Financial Year'
+		dataType: string
+		lineageTag: 9ce5e242-3d6b-4e2d-bf1a-72d11ea07e3d
+		summarizeBy: none
+		sourceColumn: Financial Year
+
+	column 'Financial Month Number'
+		dataType: int64
+		lineageTag: 0d549a04-b48c-4831-a16c-40863b18943e
+		summarizeBy: sum
+		sourceColumn: Financial Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Date' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\dim_date.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Date", type date}, {"Year", Int64.Type}, {"Month Number", Int64.Type}, {"Month Name", type text}, {"Month Short", type text}, {"Year Month", type text}, {"Quarter", type text}, {"Financial Year", type text}, {"Financial Month Number", Int64.Type}}, "en-GB")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

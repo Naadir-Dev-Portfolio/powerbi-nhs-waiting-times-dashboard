@@ -1,0 +1,21 @@
+{
+  "section": "powerbi",
+  "category": "dashboards",
+  "n": 4,
+  "title": "NHS Waiting Times",
+  "img": "powerbi-nhs-waiting-times-dashboard.png",
+  "imgFeatured": "powerbi-nhs-waiting-times-dashboard-featured.png",
+  "desc": "Public-sector dashboard tracking NHS England RTT waiting-list pressure across trusts, regions, and specialties \u2014 showing whether backlogs are rising or falling and where strain is most acute.",
+  "demo": "https://app.powerbi.com/view?r=eyJrIjoiZTBhY2FkMTEtYTFlYS00ODc2LWEzN2ItYTE2YTc0YzI4YTVjIiwidCI6IjFmMjM5NGIwLWJiZmUtNDZlYS04MDIyLTFhZjJiZjg4ZDBkZCJ9",
+  "code": "https://github.com/Naadir-Dev-Portfolio/powerbi-nhs-waiting-times-dashboard",
+  "details": "https://github.com/Naadir-Dev-Portfolio/powerbi-nhs-waiting-times-dashboard/blob/main/README.md",
+  "tags": [
+    "Power BI",
+    "DAX",
+    "Power Query",
+    "Python",
+    "PBIP",
+    "NHS",
+    "Open Data"
+  ]
+}

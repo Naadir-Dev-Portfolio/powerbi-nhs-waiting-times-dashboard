@@ -1,0 +1,123 @@
+table 'Fact Region Specialty RTT Monthly'
+	lineageTag: 1c1d21e1-e08c-4b1e-8ebc-a394ddc55817
+
+	column 'Geography Code'
+		dataType: string
+		lineageTag: 941907eb-d424-406c-9630-891b8795326f
+		summarizeBy: none
+		sourceColumn: Geography Code
+
+	column 'Geography Name'
+		dataType: string
+		lineageTag: d59790ed-4c75-4969-b120-1df136a94942
+		summarizeBy: none
+		sourceColumn: Geography Name
+
+	column 'Specialty Code'
+		dataType: string
+		lineageTag: 77b2a550-a0b6-4dd6-bf43-964c6b818bb4
+		summarizeBy: none
+		sourceColumn: Specialty Code
+
+	column 'Specialty Name'
+		dataType: string
+		lineageTag: 34ed538a-c623-47fd-87a9-1fe72eca4760
+		summarizeBy: none
+		sourceColumn: Specialty Name
+
+	column 'Waiting List'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 6dd07567-e851-4e62-8321-080e01331f4d
+		summarizeBy: sum
+		sourceColumn: Waiting List
+
+	column 'Within 18 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4e3a7c1d-c693-40d3-a315-070d3faa26df
+		summarizeBy: sum
+		sourceColumn: Within 18 Weeks
+
+	column 'Within 18 Weeks Rate'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: ec8026bf-019d-4a88-9927-babcd357d367
+		summarizeBy: none
+		sourceColumn: Within 18 Weeks Rate
+
+	column 'Median Wait Weeks'
+		dataType: double
+		formatString: 0.0
+		lineageTag: a4ec5016-b76b-401a-9352-1328637e322a
+		summarizeBy: none
+		sourceColumn: Median Wait Weeks
+
+	column '92nd Percentile Wait Weeks'
+		dataType: double
+		formatString: 0.0
+		lineageTag: a2d61974-b1ef-4f7e-bbdf-7e14bd9a7245
+		summarizeBy: none
+		sourceColumn: 92nd Percentile Wait Weeks
+
+	column 'Waits Over 52 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 63e5f67d-baca-4342-a017-d9205b63a37e
+		summarizeBy: sum
+		sourceColumn: Waits Over 52 Weeks
+
+	column 'Waits Over 78 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8227d17c-d354-496f-b69e-c38b38251efc
+		summarizeBy: sum
+		sourceColumn: Waits Over 78 Weeks
+
+	column 'Waits Over 65 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: da7e6818-956b-47cf-bb38-c81a86499d7c
+		summarizeBy: sum
+		sourceColumn: Waits Over 65 Weeks
+
+	column Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: c3427e0f-d479-4731-8f9f-e4806c5ad225
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Geography Type'
+		dataType: string
+		lineageTag: 145d5e54-1215-4c75-8dcf-d7ab172d3e8a
+		summarizeBy: none
+		sourceColumn: Geography Type
+
+	column 'Over 52 Weeks Rate'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 196dd65b-25ba-44ef-9ab6-0dac274d3553
+		summarizeBy: none
+		sourceColumn: Over 52 Weeks Rate
+
+	column 'Region Key'
+		dataType: string
+		lineageTag: d2835c53-654f-4d4e-9fc8-12294cf8fa91
+		summarizeBy: none
+		sourceColumn: Region Key
+
+	partition 'Fact Region Specialty RTT Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\fact_region_specialty_rtt_monthly.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Geography Code", type text}, {"Geography Name", type text}, {"Specialty Code", type text}, {"Specialty Name", type text}, {"Waiting List", Int64.Type}, {"Within 18 Weeks", Int64.Type}, {"Within 18 Weeks Rate", type number}, {"Median Wait Weeks", type number}, {"92nd Percentile Wait Weeks", type number}, {"Waits Over 52 Weeks", Int64.Type}, {"Waits Over 78 Weeks", Int64.Type}, {"Waits Over 65 Weeks", Int64.Type}, {"Date", type date}, {"Geography Type", type text}, {"Over 52 Weeks Rate", type number}, {"Region Key", type text}}, "en-GB")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

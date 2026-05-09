@@ -1,0 +1,49 @@
+relationship rel_national_date
+	fromColumn: 'Fact National RTT Monthly'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship rel_provider_date
+	fromColumn: 'Fact Provider RTT Monthly'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship rel_provider_provider
+	fromColumn: 'Fact Provider RTT Monthly'.'Provider Code'
+	toColumn: 'Dim Provider'.'Provider Code'
+
+relationship rel_provider_specialty_date
+	fromColumn: 'Fact Provider Specialty RTT Monthly'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship rel_provider_specialty_provider
+	fromColumn: 'Fact Provider Specialty RTT Monthly'.'Provider Code'
+	toColumn: 'Dim Provider'.'Provider Code'
+
+relationship rel_provider_specialty_specialty
+	fromColumn: 'Fact Provider Specialty RTT Monthly'.'Specialty Code'
+	toColumn: 'Dim Specialty'.'Specialty Code'
+
+relationship rel_region_date
+	fromColumn: 'Fact Region RTT Monthly'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship rel_region_region
+	fromColumn: 'Fact Region RTT Monthly'.'Region Key'
+	toColumn: 'Dim Region'.'Region Key'
+
+relationship rel_region_specialty_date
+	fromColumn: 'Fact Region Specialty RTT Monthly'.Date
+	toColumn: 'Dim Date'.Date
+
+relationship rel_region_specialty_region
+	fromColumn: 'Fact Region Specialty RTT Monthly'.'Region Key'
+	toColumn: 'Dim Region'.'Region Key'
+
+relationship rel_region_specialty_specialty
+	fromColumn: 'Fact Region Specialty RTT Monthly'.'Specialty Code'
+	toColumn: 'Dim Specialty'.'Specialty Code'
+
+relationship 3f427f36-e847-4d50-8ebb-5c94dc09c28e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Dim Date'.Date
+	toColumn: LocalDateTable_8ed5fcea-18a2-4e0f-98c7-085e0c0f9560.Date
+

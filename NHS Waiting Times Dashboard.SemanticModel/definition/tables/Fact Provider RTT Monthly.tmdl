@@ -1,0 +1,97 @@
+table 'Fact Provider RTT Monthly'
+	lineageTag: 26fb4717-508b-43d6-aa99-70f1c7b0ed50
+
+	column Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 9680814c-aa83-467c-ae56-7fa41f8e67b6
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Provider Parent Code'
+		dataType: string
+		lineageTag: 16a2ed68-542d-44ba-9c7e-30e8ff52b4f1
+		summarizeBy: none
+		sourceColumn: Provider Parent Code
+
+	column 'Provider Parent Name'
+		dataType: string
+		lineageTag: 78701fcf-7c39-44b1-b33c-4b155dd6f624
+		summarizeBy: none
+		sourceColumn: Provider Parent Name
+
+	column 'Provider Code'
+		dataType: string
+		lineageTag: 2bea4da0-6ea6-4420-9283-031cfe862167
+		summarizeBy: none
+		sourceColumn: Provider Code
+
+	column 'Provider Name'
+		dataType: string
+		lineageTag: e4587615-8ef8-4050-8d60-e32e6e504cf9
+		summarizeBy: none
+		sourceColumn: Provider Name
+
+	column 'Waiting List'
+		dataType: int64
+		formatString: #,0
+		lineageTag: c7849534-d202-4fb6-a60e-ad809e400754
+		summarizeBy: sum
+		sourceColumn: Waiting List
+
+	column 'Unknown Clock Start'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1b3cbd8e-ab0c-42d0-a302-868dfa94d054
+		summarizeBy: sum
+		sourceColumn: Unknown Clock Start
+
+	column 'Waits Over 18 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 78805364-f3e9-4907-8be9-c3ff48b44d8f
+		summarizeBy: sum
+		sourceColumn: Waits Over 18 Weeks
+
+	column 'Waits Over 52 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 17a7c679-66e1-49ac-a91d-55fc518f6a13
+		summarizeBy: sum
+		sourceColumn: Waits Over 52 Weeks
+
+	column 'Waits Over 65 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: af733c37-cc02-4c77-8a20-37d175cb9220
+		summarizeBy: sum
+		sourceColumn: Waits Over 65 Weeks
+
+	column 'Waits Over 78 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8d0cac27-5259-47cf-8d45-35ced0056759
+		summarizeBy: sum
+		sourceColumn: Waits Over 78 Weeks
+
+	column 'Waits Over 104 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: e911079c-65c6-4fe4-be8d-86a6ea5f24b1
+		summarizeBy: sum
+		sourceColumn: Waits Over 104 Weeks
+
+	partition 'Fact Provider RTT Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\fact_provider_rtt_monthly.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Date", type date}, {"Provider Parent Code", type text}, {"Provider Parent Name", type text}, {"Provider Code", type text}, {"Provider Name", type text}, {"Waiting List", Int64.Type}, {"Unknown Clock Start", Int64.Type}, {"Waits Over 18 Weeks", Int64.Type}, {"Waits Over 52 Weeks", Int64.Type}, {"Waits Over 65 Weeks", Int64.Type}, {"Waits Over 78 Weeks", Int64.Type}, {"Waits Over 104 Weeks", Int64.Type}}, "en-GB")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

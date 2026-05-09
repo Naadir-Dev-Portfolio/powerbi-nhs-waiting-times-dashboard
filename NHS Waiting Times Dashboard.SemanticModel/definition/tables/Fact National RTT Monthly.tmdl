@@ -1,0 +1,291 @@
+table 'Fact National RTT Monthly'
+	lineageTag: b1955851-9cb4-495b-a775-cb96075f617d
+
+	measure 'Latest Snapshot Date' = CALCULATE(MAX('Dim Date'[Date]), ALL('Dim Date'))
+		formatString: dd mmm yyyy
+		lineageTag: 20f95e29-9739-4b12-b31a-a87ac47e16c4
+
+	measure 'National Waiting List' = SUM('Fact National RTT Monthly'[Total Waiting List])
+		formatString: #,0
+		lineageTag: a93f7a00-4fcc-475d-8833-286c7fdf3c9d
+
+	measure 'National Waiting List Latest' =
+			VAR LatestDate = [Latest Snapshot Date]
+			RETURN
+			    CALCULATE([National Waiting List], 'Dim Date'[Date] = LatestDate)
+		formatString: #,0
+		lineageTag: 38746a86-e054-44b5-8c21-8d8cc2dec6d1
+
+	measure 'National Waiting List Previous Month' = CALCULATE([National Waiting List], DATEADD('Dim Date'[Date], -1, MONTH))
+		formatString: #,0
+		lineageTag: e8e2584f-c76c-47e9-b7f6-19776f721602
+
+	measure 'National Waiting List MoM Change' = [National Waiting List] - [National Waiting List Previous Month]
+		formatString: +#,0;-#,0;0
+		lineageTag: 4d61db0f-0ff0-4465-9e4d-7fea917a2f35
+
+	measure 'National Waiting List MoM %' = DIVIDE([National Waiting List MoM Change], [National Waiting List Previous Month])
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 6c6990d9-3daa-4fb8-908e-66cc74afb455
+
+	measure 'National Waiting List 3M Avg' = AVERAGEX(DATESINPERIOD('Dim Date'[Date], MAX('Dim Date'[Date]), -3, MONTH), [National Waiting List])
+		formatString: #,0
+		lineageTag: 3c15221c-35ae-499f-98c9-163d5dfca61b
+
+	measure 'National Over 18 Weeks' = SUM('Fact National RTT Monthly'[Over 18 Weeks])
+		formatString: #,0
+		lineageTag: 7b47783a-07a7-4027-8c62-35868b2435f0
+
+	measure 'National Over 52 Weeks' = SUM('Fact National RTT Monthly'[Over 52 Weeks])
+		formatString: #,0
+		lineageTag: 0040c682-2e71-4561-8e8c-c0b128907d88
+
+	measure 'National Over 52 Weeks Previous Month' = CALCULATE([National Over 52 Weeks], DATEADD('Dim Date'[Date], -1, MONTH))
+		formatString: #,0
+		lineageTag: 7801f5c7-eaa5-47b9-85e6-a6a9f3a2c6ea
+
+	measure 'National Over 52 Weeks MoM Change' = [National Over 52 Weeks] - [National Over 52 Weeks Previous Month]
+		formatString: +#,0;-#,0;0
+		lineageTag: 4d714a39-4299-4f1a-b51a-0664f942a650
+
+	measure 'National Within 18 Weeks Rate' = DIVIDE(SUM('Fact National RTT Monthly'[Within 18 Weeks]), SUM('Fact National RTT Monthly'[Total Waiting List]))
+		formatString: 0.0%
+		lineageTag: 37844ae7-a366-48b0-9b23-51f6977eb55c
+
+	measure 'National Over 18 Weeks Rate' = DIVIDE([National Over 18 Weeks], [National Waiting List])
+		formatString: 0.0%
+		lineageTag: 9c3774f4-3746-4836-a1b5-bcde0b86c71d
+
+	measure 'National Over 52 Weeks Rate' = DIVIDE([National Over 52 Weeks], [National Waiting List])
+		formatString: 0.0%
+		lineageTag: 56929231-bd0c-46a9-9bc9-0b38f3b8c355
+
+	measure 'RTT 18 Week Target' = 0.92
+		formatString: 0.0%
+		lineageTag: bc462072-e273-4818-8f63-281d6150bcad
+
+	measure 'RTT Target Gap' = [National Within 18 Weeks Rate] - [RTT 18 Week Target]
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 3be30aa9-5ff5-4d39-91b4-b55bbdfc91c1
+
+	measure 'National Median Wait Weeks' = AVERAGE('Fact National RTT Monthly'[Median Wait Weeks])
+		formatString: 0.0
+		lineageTag: cadb3ee4-27cb-43f1-8bc3-ca430ef1ad92
+
+	measure 'National 92nd Percentile Wait Weeks' = AVERAGE('Fact National RTT Monthly'[92nd Percentile Wait Weeks])
+		formatString: 0.0
+		lineageTag: c645c88c-f9e4-46a8-8aab-fecc02070ba1
+
+	measure 'Waiting List Verdict' =
+			SWITCH(
+			    TRUE(),
+			    [National Waiting List MoM Change] > 0 && [National Over 52 Weeks MoM Change] > 0, "Deteriorating",
+			    [National Waiting List MoM Change] < 0 && [National Over 52 Weeks MoM Change] < 0, "Improving",
+			    [National Waiting List MoM Change] < 0 && [National Over 52 Weeks MoM Change] > 0, "Mixed: backlog falling but long waits rising",
+			    [National Waiting List MoM Change] > 0 && [National Over 52 Weeks MoM Change] < 0, "Mixed: backlog rising but long waits easing",
+			    "Broadly stable"
+			)
+		lineageTag: 616e34f3-d15f-4499-a900-228640ede7fa
+
+	measure 'Provider Waiting List' = SUM('Fact Provider RTT Monthly'[Waiting List])
+		formatString: #,0
+		lineageTag: f9e0585c-a9e2-42d2-aa19-bb516787164e
+
+	measure 'Provider Over 18 Weeks' = SUM('Fact Provider RTT Monthly'[Waits Over 18 Weeks])
+		formatString: #,0
+		lineageTag: 23edc0df-e39e-4bfe-aa53-9939280e096e
+
+	measure 'Provider Over 52 Weeks' = SUM('Fact Provider RTT Monthly'[Waits Over 52 Weeks])
+		formatString: #,0
+		lineageTag: 74561a7e-2679-422b-b3e3-1eaa755f3c48
+
+	measure 'Provider Over 65 Weeks' = SUM('Fact Provider RTT Monthly'[Waits Over 65 Weeks])
+		formatString: #,0
+		lineageTag: 33bc4b07-c71a-4a02-a6cf-fc83407cfcfc
+
+	measure 'Provider Over 78 Weeks' = SUM('Fact Provider RTT Monthly'[Waits Over 78 Weeks])
+		formatString: #,0
+		lineageTag: ba664628-8101-40b3-8c18-465587284e1e
+
+	measure 'Provider Over 104 Weeks' = SUM('Fact Provider RTT Monthly'[Waits Over 104 Weeks])
+		formatString: #,0
+		lineageTag: c178bf77-f6fa-4453-9127-22f8644de913
+
+	measure 'Provider Over 52 Weeks Rate' = DIVIDE([Provider Over 52 Weeks], [Provider Waiting List])
+		formatString: 0.0%
+		lineageTag: 10fbd6b9-3720-4443-bdff-e869b54c0b07
+
+	measure 'Provider Pressure Rank' = RANKX(ALL('Dim Provider'[Provider Name]), [Provider Waiting List], , DESC, Dense)
+		formatString: #,0
+		lineageTag: de18c052-7cbd-4d15-b867-5fe085995fbf
+
+	measure 'Provider Long Wait Rank' = RANKX(ALL('Dim Provider'[Provider Name]), [Provider Over 52 Weeks Rate], , DESC, Dense)
+		formatString: #,0
+		lineageTag: 3c581f9a-4d12-47c3-bbc3-882acab802a4
+
+	measure 'Specialty Waiting List' = SUM('Fact Provider Specialty RTT Monthly'[Waiting List])
+		formatString: #,0
+		lineageTag: 8b591328-9ff2-4e57-8dd7-8356194df021
+
+	measure 'Specialty Over 52 Weeks' = SUM('Fact Provider Specialty RTT Monthly'[Waits Over 52 Weeks])
+		formatString: #,0
+		lineageTag: 3474b07f-2f9e-48a1-8a40-23b0f7c6774d
+
+	measure 'Specialty Over 65 Weeks' = SUM('Fact Provider Specialty RTT Monthly'[Waits Over 65 Weeks])
+		formatString: #,0
+		lineageTag: 4e1bdfa7-30be-4396-86ca-0377666a0c93
+
+	measure 'Specialty Over 78 Weeks' = SUM('Fact Provider Specialty RTT Monthly'[Waits Over 78 Weeks])
+		formatString: #,0
+		lineageTag: 5955ef4d-f514-442b-8568-bbf5214fbb2e
+
+	measure 'Specialty Share of Waiting List' = DIVIDE([Specialty Waiting List], CALCULATE([Specialty Waiting List], ALL('Dim Specialty')))
+		formatString: 0.0%
+		lineageTag: effae71a-ea4f-47e3-a3d8-6dcf0879a16e
+
+	measure 'Specialty Pressure Rank' = RANKX(ALL('Dim Specialty'[Specialty Name]), [Specialty Waiting List], , DESC, Dense)
+		formatString: #,0
+		lineageTag: 456d8af6-dcc7-4849-a383-3c7b01d38cd7
+
+	measure 'Region Waiting List' = SUM('Fact Region RTT Monthly'[Waiting List])
+		formatString: #,0
+		lineageTag: a7fbdced-f163-4988-827e-9e68bc151d06
+
+	measure 'Region Within 18 Weeks' = SUM('Fact Region RTT Monthly'[Within 18 Weeks])
+		formatString: #,0
+		lineageTag: 3d1fc016-ab2b-4374-8982-ae7767d0aff0
+
+	measure 'Region Within 18 Weeks Rate' = DIVIDE([Region Within 18 Weeks], [Region Waiting List])
+		formatString: 0.0%
+		lineageTag: 13aa4ad0-3505-4a1c-b5e0-d6a5dcedf52e
+
+	measure 'Region Over 52 Weeks' = SUM('Fact Region RTT Monthly'[Waits Over 52 Weeks])
+		formatString: #,0
+		lineageTag: daac8efb-41d6-4045-84b7-bc2aff1fc042
+
+	measure 'Region Over 52 Weeks Rate' = DIVIDE([Region Over 52 Weeks], [Region Waiting List])
+		formatString: 0.0%
+		lineageTag: e1c13b49-14a1-4042-846c-1f8c34aa610f
+
+	measure 'Region Pressure Rank' = RANKX(ALL('Dim Region'[Geography Name]), [Region Waiting List], , DESC, Dense)
+		formatString: #,0
+		lineageTag: 10e30260-7a8f-44c4-ac29-a66671e73dfb
+
+	measure 'Latest Month Label' = "Snapshot: " & FORMAT([Latest Snapshot Date], "mmmm yyyy")
+		lineageTag: 0ad0d285-3780-41d9-a6f4-f16163b1093e
+
+	measure 'National Headline Narrative' =
+			"Snapshot " & FORMAT([Latest Snapshot Date], "mmm yyyy") & ": waiting list "
+			& FORMAT([National Waiting List Latest], "#,0")
+			& " (" & FORMAT([National Waiting List MoM %], "+0.0%;-0.0%;0.0%") & " MoM). "
+			& "Within-18-week performance "
+			& FORMAT([National Within 18 Weeks Rate], "0.0%")
+			& " vs " & FORMAT([RTT 18 Week Target], "0%") & " target — "
+			& [Waiting List Verdict] & "."
+		lineageTag: 88d3fc0b-b608-4792-b816-1ad28ab0d7b5
+
+	measure 'Specialty Over 52 Weeks Rate' = DIVIDE([Specialty Over 52 Weeks], [Specialty Waiting List])
+		formatString: 0.0%
+		lineageTag: ae9cedbb-113b-4885-9b18-25f690f885bb
+
+	measure 'Target Line 92%' = 0.92
+		formatString: 0.0%
+		lineageTag: e35b260a-8c06-4700-a332-d99cdd340554
+
+	column Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 063dd784-ffc0-4317-88f0-0cfd62c3d67f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Total Waiting List'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7b08d75f-3883-4bc8-806d-8fae50b6d471
+		summarizeBy: sum
+		sourceColumn: Total Waiting List
+
+	column 'Within 18 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1e8ccf64-402a-4e14-8859-80947582bcdb
+		summarizeBy: sum
+		sourceColumn: Within 18 Weeks
+
+	column 'Over 18 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 17f43f0f-b169-427f-b719-9f8b7c501f02
+		summarizeBy: sum
+		sourceColumn: Over 18 Weeks
+
+	column 'Over 52 Weeks'
+		dataType: int64
+		formatString: #,0
+		lineageTag: dacb182a-5c02-4093-afe6-e6eebf139ddf
+		summarizeBy: sum
+		sourceColumn: Over 52 Weeks
+
+	column 'Within 18 Weeks Rate'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c04daa4e-f6d5-4a6d-8580-939e5a254164
+		summarizeBy: none
+		sourceColumn: Within 18 Weeks Rate
+
+	column 'Over 18 Weeks Rate'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 2c16188b-f6d5-463c-a571-83b2d202749c
+		summarizeBy: none
+		sourceColumn: Over 18 Weeks Rate
+
+	column 'Over 52 Weeks Rate'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: b5af2f06-b4cb-4f5c-8b0c-46a7001a54c4
+		summarizeBy: none
+		sourceColumn: Over 52 Weeks Rate
+
+	column 'Median Wait Weeks'
+		dataType: double
+		formatString: 0.0
+		lineageTag: eb6bb136-5396-42b9-872e-86c5c2d86ebe
+		summarizeBy: none
+		sourceColumn: Median Wait Weeks
+
+	column '92nd Percentile Wait Weeks'
+		dataType: double
+		formatString: 0.0
+		lineageTag: 7027178a-e4f2-4046-9a07-95a52650075f
+		summarizeBy: none
+		sourceColumn: 92nd Percentile Wait Weeks
+
+	column 'Within 18 Weeks Target'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d8a0872b-80f8-42cb-88e9-9df99ba81a03
+		summarizeBy: none
+		sourceColumn: Within 18 Weeks Target
+
+	column Source
+		dataType: string
+		lineageTag: e831ad58-c63d-4725-9123-0699ea4fb3d5
+		summarizeBy: none
+		sourceColumn: Source
+
+	partition 'Fact National RTT Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(CuratedDataFolder & "\fact_national_rtt_monthly.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"Date", type date}, {"Total Waiting List", Int64.Type}, {"Within 18 Weeks", Int64.Type}, {"Over 18 Weeks", Int64.Type}, {"Over 52 Weeks", Int64.Type}, {"Within 18 Weeks Rate", type number}, {"Over 18 Weeks Rate", type number}, {"Over 52 Weeks Rate", type number}, {"Median Wait Weeks", type number}, {"92nd Percentile Wait Weeks", type number}, {"Within 18 Weeks Target", type number}, {"Source", type text}}, "en-GB")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

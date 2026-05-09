@@ -1,0 +1,221 @@
+{
+  "latest_month": "2026-02-01",
+  "national_waiting_list": 7216208,
+  "national_waiting_list_previous_month": 7247214,
+  "national_waiting_list_month_change": -31006,
+  "national_over_18_weeks": 2699684,
+  "national_over_52_weeks": 122668,
+  "national_within_18_weeks_rate": 0.6258860609339421,
+  "top_providers_by_waiting_list": [
+    {
+      "Provider Code": "RAJ",
+      "Provider Name": "MID AND SOUTH ESSEX NHS FOUNDATION TRUST",
+      "Waiting List": 176895,
+      "Waits Over 52 Weeks": 12623,
+      "Long Wait Rate 52 Weeks": 0.07135871562226179
+    },
+    {
+      "Provider Code": "R0A",
+      "Provider Name": "MANCHESTER UNIVERSITY NHS FOUNDATION TRUST",
+      "Waiting List": 172193,
+      "Waits Over 52 Weeks": 2416,
+      "Long Wait Rate 52 Weeks": 0.014030767801246275
+    },
+    {
+      "Provider Code": "RAL",
+      "Provider Name": "ROYAL FREE LONDON NHS FOUNDATION TRUST",
+      "Waiting List": 139987,
+      "Waits Over 52 Weeks": 2395,
+      "Long Wait Rate 52 Weeks": 0.017108731525070184
+    },
+    {
+      "Provider Code": "RM3",
+      "Provider Name": "NORTHERN CARE ALLIANCE NHS FOUNDATION TRUST",
+      "Waiting List": 130781,
+      "Waits Over 52 Weeks": 4571,
+      "Long Wait Rate 52 Weeks": 0.03495156024193117
+    },
+    {
+      "Provider Code": "R1H",
+      "Provider Name": "BARTS HEALTH NHS TRUST",
+      "Waiting List": 128332,
+      "Waits Over 52 Weeks": 1814,
+      "Long Wait Rate 52 Weeks": 0.014135211794408254
+    },
+    {
+      "Provider Code": "RWE",
+      "Provider Name": "UNIVERSITY HOSPITALS OF LEICESTER NHS TRUST",
+      "Waiting List": 117449,
+      "Waits Over 52 Weeks": 2503,
+      "Long Wait Rate 52 Weeks": 0.021311377704365298
+    },
+    {
+      "Provider Code": "RYR",
+      "Provider Name": "UNIVERSITY HOSPITALS SUSSEX NHS FOUNDATION TRUST",
+      "Waiting List": 114061,
+      "Waits Over 52 Weeks": 4753,
+      "Long Wait Rate 52 Weeks": 0.04167068498435048
+    },
+    {
+      "Provider Code": "RJ1",
+      "Provider Name": "GUY'S AND ST THOMAS' NHS FOUNDATION TRUST",
+      "Waiting List": 107138,
+      "Waits Over 52 Weeks": 971,
+      "Long Wait Rate 52 Weeks": 0.009063077526181186
+    },
+    {
+      "Provider Code": "RTG",
+      "Provider Name": "UNIVERSITY HOSPITALS OF DERBY AND BURTON NHS FOUNDATION TRUST",
+      "Waiting List": 96841,
+      "Waits Over 52 Weeks": 1909,
+      "Long Wait Rate 52 Weeks": 0.019712724982187298
+    },
+    {
+      "Provider Code": "RX1",
+      "Provider Name": "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST",
+      "Waiting List": 91723,
+      "Waits Over 52 Weeks": 2188,
+      "Long Wait Rate 52 Weeks": 0.023854431276778998
+    }
+  ],
+  "top_specialties_by_waiting_list": [
+    {
+      "Specialty Code": "C_110",
+      "Specialty Name": "Trauma and Orthopaedic Service",
+      "Waiting List": 837743,
+      "Waits Over 52 Weeks": 23056,
+      "Waits Over 65 Weeks": 4234,
+      "Waits Over 78 Weeks": 1905
+    },
+    {
+      "Specialty Code": "X02",
+      "Specialty Name": "Other - Medical Services",
+      "Waiting List": 624597,
+      "Waits Over 52 Weeks": 5946,
+      "Waits Over 65 Weeks": 147,
+      "Waits Over 78 Weeks": 23
+    },
+    {
+      "Specialty Code": "C_130",
+      "Specialty Name": "Ophthalmology Service",
+      "Waiting List": 602540,
+      "Waits Over 52 Weeks": 5181,
+      "Waits Over 65 Weeks": 130,
+      "Waits Over 78 Weeks": 21
+    },
+    {
+      "Specialty Code": "C_120",
+      "Specialty Name": "Ear Nose and Throat Service",
+      "Waiting List": 587637,
+      "Waits Over 52 Weeks": 15490,
+      "Waits Over 65 Weeks": 675,
+      "Waits Over 78 Weeks": 141
+    },
+    {
+      "Specialty Code": "C_502",
+      "Specialty Name": "Gynaecology Service",
+      "Waiting List": 565435,
+      "Waits Over 52 Weeks": 13160,
+      "Waits Over 65 Weeks": 388,
+      "Waits Over 78 Weeks": 25
+    },
+    {
+      "Specialty Code": "X05",
+      "Specialty Name": "Other - Surgical Services",
+      "Waiting List": 476457,
+      "Waits Over 52 Weeks": 7929,
+      "Waits Over 65 Weeks": 435,
+      "Waits Over 78 Weeks": 54
+    },
+    {
+      "Specialty Code": "C_101",
+      "Specialty Name": "Urology Service",
+      "Waiting List": 386911,
+      "Waits Over 52 Weeks": 6818,
+      "Waits Over 65 Weeks": 454,
+      "Waits Over 78 Weeks": 92
+    },
+    {
+      "Specialty Code": "C_100",
+      "Specialty Name": "General Surgery Service",
+      "Waiting List": 385499,
+      "Waits Over 52 Weeks": 8207,
+      "Waits Over 65 Weeks": 415,
+      "Waits Over 78 Weeks": 52
+    },
+    {
+      "Specialty Code": "C_320",
+      "Specialty Name": "Cardiology Service",
+      "Waiting List": 382774,
+      "Waits Over 52 Weeks": 4159,
+      "Waits Over 65 Weeks": 243,
+      "Waits Over 78 Weeks": 71
+    },
+    {
+      "Specialty Code": "C_330",
+      "Specialty Name": "Dermatology Service",
+      "Waiting List": 381323,
+      "Waits Over 52 Weeks": 5283,
+      "Waits Over 65 Weeks": 152,
+      "Waits Over 78 Weeks": 7
+    }
+  ],
+  "regions_by_waiting_list": [
+    {
+      "Geography Code": "Y60",
+      "Geography Name": "MIDLANDS COMMISSIONING REGION",
+      "Waiting List": 1322944,
+      "Waits Over 52 Weeks": 19744,
+      "Within 18 Weeks Rate": 0.606581986841469
+    },
+    {
+      "Geography Code": "Y56",
+      "Geography Name": "LONDON COMMISSIONING REGION",
+      "Waiting List": 1169363,
+      "Waits Over 52 Weeks": 15095,
+      "Within 18 Weeks Rate": 0.639051346758876
+    },
+    {
+      "Geography Code": "Y59",
+      "Geography Name": "SOUTH EAST COMMISSIONING REGION",
+      "Waiting List": 1069662,
+      "Waits Over 52 Weeks": 19978,
+      "Within 18 Weeks Rate": 0.617764303116311
+    },
+    {
+      "Geography Code": "Y62",
+      "Geography Name": "NORTH WEST COMMISSIONING REGION",
+      "Waiting List": 987393,
+      "Waits Over 52 Weeks": 17736,
+      "Within 18 Weeks Rate": 0.610820615499604
+    },
+    {
+      "Geography Code": "Y61",
+      "Geography Name": "EAST OF ENGLAND COMMISSIONING REGION",
+      "Waiting List": 901693,
+      "Waits Over 52 Weeks": 25855,
+      "Within 18 Weeks Rate": 0.594387446725216
+    },
+    {
+      "Geography Code": "Y63",
+      "Geography Name": "NORTH EAST AND YORKSHIRE COMMISSIONING REGION",
+      "Waiting List": 900085,
+      "Waits Over 52 Weeks": 11739,
+      "Within 18 Weeks Rate": 0.666623707760934
+    },
+    {
+      "Geography Code": "Y58",
+      "Geography Name": "SOUTH WEST COMMISSIONING REGION",
+      "Waiting List": 639750,
+      "Waits Over 52 Weeks": 7954,
+      "Within 18 Weeks Rate": 0.662918327471669
+    },
+    {
+      "Geography Code": "-",
+      "Geography Name": "NHS ENGLAND",
+      "Waiting List": 134062,
+      "Waits Over 52 Weeks": 2770,
+      "Within 18 Weeks Rate": 0.615461502886724
+    }
+  ]
+}

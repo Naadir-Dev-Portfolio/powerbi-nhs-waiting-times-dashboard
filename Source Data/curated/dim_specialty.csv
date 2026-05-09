@@ -1,0 +1,24 @@
+Specialty Code,Specialty Name
+C_320,Cardiology Service
+C_170,Cardiothoracic Surgery Service
+C_330,Dermatology Service
+C_120,Ear Nose and Throat Service
+C_430,Elderly Medicine Service
+C_301,Gastroenterology Service
+C_300,General Internal Medicine Service
+C_100,General Surgery Service
+C_502,Gynaecology Service
+C_400,Neurology Service
+C_150,Neurosurgical Service
+C_130,Ophthalmology Service
+C_140,Oral Surgery Service
+X02,Other - Medical Services
+X03,Other - Mental Health Services
+X06,Other - Other Services
+X04,Other - Paediatric Services
+X05,Other - Surgical Services
+C_160,Plastic Surgery Service
+C_340,Respiratory Medicine Service
+C_410,Rheumatology Service
+C_110,Trauma and Orthopaedic Service
+C_101,Urology Service
