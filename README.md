@@ -8,6 +8,8 @@
 
 <p>Built for analysts, portfolio reviewers, and public-sector decision-makers who need a clear view of where NHS elective-care pressure is building and why it matters.</p>
 
+<p><strong>Technical documentation:</strong> <a href="https://naadir-dev-portfolio.github.io/powerbi-nhs-waiting-times-dashboard/">View the published report documentation</a></p>
+
 <p>
   <a href="#overview">Overview</a> |
   <a href="#what-problem-it-solves">What It Solves</a> |
